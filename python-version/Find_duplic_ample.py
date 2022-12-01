@@ -60,16 +60,17 @@ def duplic_files(pathdir):
                 os.remove(pathdir + "\\" + dict_to_del[int(del_item)])
                 print(get_display(dict_to_del[int(del_item)] + "  -- נמחק!"))
         except:
-            print("עליך להכניס מספר בכדי למחוק קובץ מסוים!"[-1::-1])
+            print(get_display("עליך להכניס מספר בכדי למחוק קובץ מסוים!"))
     else:
-        print("לא נמצא דבר!"[-1::-1])
+        print(get_display("לא נמצא דבר!"))
             
 def main():
     dir_path = str(sys.argv[1])
     if (dir_path != "") and (os.path.exists(dir_path)):
+        print("\n>>" + get_display(sys.argv[1]))
         duplic_files(sys.argv[1])
-
+        os.system('timeout 1')
+        os.system('cls')
 
 if __name__ == '__main__':
     main()
-    os.system('pause')
