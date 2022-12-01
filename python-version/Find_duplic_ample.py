@@ -5,8 +5,6 @@ from bidi.algorithm import get_display
 
 def duplic_scan(myfile):
 # פונקציה זו עוברת על הקוד הבינארי של הקובץ ושומרת מדגם שלו למשתנה
-    filename = myfile
-    global break_num
     global id_file
     break_num = 0
     id_file = "id:"
