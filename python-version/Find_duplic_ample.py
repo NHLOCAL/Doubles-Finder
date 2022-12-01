@@ -2,8 +2,8 @@
 import os
 import sys
 
-# פונקציה זו עוברת על הקוד הבינארי של הקובץ ושומרת מדגם שלו למשתנה
 def duplic_scan(myfile):
+# פונקציה זו עוברת על הקוד הבינארי של הקובץ ושומרת מדגם שלו למשתנה
     filename = myfile
     global break_num
     global id_file
@@ -21,8 +21,9 @@ def duplic_scan(myfile):
             
     return(id_file)
 
-# פונקציה זו עוברת על קבוצת קבצים שבתיקיה ומפעילה עליהם את הפונצקיה "duplic_scan"
+
 def duplic_files(pathdir):
+# פונקציה זו עוברת על קבוצת קבצים שבתיקיה ומפעילה עליהם את הפונקציה duplic_scan
     my_dir = os.listdir(pathdir)    
     global files_list
     files_list = []
@@ -45,19 +46,20 @@ def duplic_files(pathdir):
     file_num = 0
     
     for item in dict_list:
-        mut_list = files_list.copy()
-        mut_list.remove(item[1])
-        if item[1] in mut_list:
+        if files_list.count(item[1]) == 2:
             file_num += 1
             dict_to_del[file_num] = item[0]
-            print(str(file_num) + ": " + item[0])
+            print(str(file_num) + ": " + item[0][-5::-1])
             
     if file_num >= 1:
-        select_file = input(">>>")   
-        os.remove(pathdir + "\\" + dict_to_del[int(select_file)])
-        print(dict_to_del[int(select_file)] + " deleted!")
+        select_file = input("\n" + "הכנס מספר רצוי בכדי למחוק קובץ"[-1::-1] + "\n>>>")
+        try:
+            os.remove(pathdir + "\\" + dict_to_del[int(select_file)])
+            print('{} "{}"'.format(" נמחק!"[-1::-1], dict_to_del[int(select_file)][-5::-1]))
+        except:
+            print("עליך להכניס מספר בכדי למחוק קובץ מסוים!"[-1::-1])
     else:
-        print("not found!")
+        print("לא נמצא דבר!"[-1::-1])
             
 def main():
     dir_path = str(sys.argv[1])
