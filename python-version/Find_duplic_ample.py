@@ -21,9 +21,9 @@ def duplic_scan(myfile):
     return(id_file)
 
 
-def duplic_files(pathdir):
+def duplic_files(dir_path):
 # פונקציה זו עוברת על קבוצת קבצים שבתיקיה ומפעילה עליהם את הפונקציה duplic_scan
-    my_dir = os.listdir(pathdir)
+    my_dir = os.listdir(dir_path)
     files_list = []
     files_dict = {}
     dict_to_del = {}
@@ -33,7 +33,7 @@ def duplic_files(pathdir):
         # בדיקה אם שם הקובץ הפנימי מכיל סיומות ספציפיות
         if not (".mp3" in file) or (".wav" in file) or (".wma" in file):
             continue
-        my_file = duplic_scan(pathdir + "\\" + file)
+        my_file = duplic_scan(dir_path + "\\" + file)
         files_dict[file] = id_file
         files_list.append(id_file)
         
@@ -52,7 +52,7 @@ def duplic_files(pathdir):
         select_file = select_file.split(',')
         try:
             for del_item in select_file:
-                os.remove(pathdir + "\\" + dict_to_del[int(del_item)])
+                os.remove(dir_path + "\\" + dict_to_del[int(del_item)])
                 print(get_display(dict_to_del[int(del_item)] + "  -- נמחק!"))
         except:
             print(get_display("עליך להכניס מספר בכדי למחוק קובץ מסוים!"))
