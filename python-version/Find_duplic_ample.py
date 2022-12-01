@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+from bidi.algorithm import get_display
 
 def duplic_scan(myfile):
 # פונקציה זו עוברת על הקוד הבינארי של הקובץ ושומרת מדגם שלו למשתנה
@@ -49,13 +50,15 @@ def duplic_files(pathdir):
         if files_list.count(item[1]) == 2:
             file_num += 1
             dict_to_del[file_num] = item[0]
-            print(str(file_num) + ": " + item[0][-5::-1])
+            print(str(file_num) + ": " + get_display(item[0]))
             
     if file_num >= 1:
-        select_file = input("\n" + "הכנס מספר רצוי בכדי למחוק קובץ"[-1::-1] + "\n>>>")
+        select_file = input(get_display("\nהכנס מספר רצוי בכדי למחוק קובץ\nניתן להכניס כמה ספרות בהפרדה של פסיק ביניהם") + "\n>>>")
+        select_file = select_file.split(',')
         try:
-            os.remove(pathdir + "\\" + dict_to_del[int(select_file)])
-            print('{} "{}"'.format(" נמחק!"[-1::-1], dict_to_del[int(select_file)][-5::-1]))
+            for del_item in select_file:
+                os.remove(pathdir + "\\" + dict_to_del[int(del_item)])
+                print(get_display(dict_to_del[int(del_item)] + "  -- נמחק!"))
         except:
             print("עליך להכניס מספר בכדי למחוק קובץ מסוים!"[-1::-1])
     else:
