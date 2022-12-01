@@ -25,12 +25,9 @@ def duplic_scan(myfile):
 
 def duplic_files(pathdir):
 # פונקציה זו עוברת על קבוצת קבצים שבתיקיה ומפעילה עליהם את הפונקציה duplic_scan
-    my_dir = os.listdir(pathdir)    
-    global files_list
+    my_dir = os.listdir(pathdir)
     files_list = []
-    global files_dict
     files_dict = {}
-    global dict_to_del
     dict_to_del = {}
     
     # מעבר על רשימת הקבצים והוספת דגימה של הקידוד שלהם למשתנה
