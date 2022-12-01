@@ -63,7 +63,7 @@ def main():
     dir_path = str(sys.argv[1])
     if (dir_path != "") and (os.path.exists(dir_path)):
         print("\n>>" + get_display(sys.argv[1]))
-        duplic_files(sys.argv[1])
+        duplic_files(dir_path)
         os.system('timeout 1')
         os.system('cls')
 
