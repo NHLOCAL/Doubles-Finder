@@ -31,7 +31,7 @@ def duplic_files(dir_path):
     # מעבר על רשימת הקבצים והוספת דגימה של הקידוד שלהם למשתנה
     for file in my_dir:
         # בדיקה אם שם הקובץ הפנימי מכיל סיומות ספציפיות
-        if not (".mp3" in file) or (".wav" in file) or (".wma" in file):
+        if not (file.endswith(".mp3") or file.endswith(".wav") or file.endswith(".wma")):
             continue
         my_file = duplic_scan(dir_path + "\\" + file)
         files_dict[file] = id_file
