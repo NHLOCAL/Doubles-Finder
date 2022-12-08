@@ -24,12 +24,19 @@ def duplic_scan(myfile):
 def duplic_files(dir_path):
 # פונקציה זו עוברת על קבוצת קבצים שבתיקיה ומפעילה עליהם את הפונקציה duplic_scan
     my_dir = os.listdir(dir_path)
+    len_dir = len(my_dir)
+    len_item = 0
     files_list = []
     files_dict = {}
     dict_to_del = {}
     
     # מעבר על רשימת הקבצים והוספת דגימה של הקידוד שלהם למשתנה
     for file in my_dir:
+        # תצוגת אחוזים מתחלפת
+        len_item += 1
+        show_len = len_item * 100 // len_dir
+        print(str(show_len) + "% " + get_display("הושלמו"))
+
         # בדיקה אם שם הקובץ הפנימי מכיל סיומות ספציפיות
         if not (file.endswith(".mp3") or file.endswith(".wav") or file.endswith(".wma")):
             continue
@@ -48,8 +55,8 @@ def duplic_files(dir_path):
             print(str(file_num) + ": " + get_display(item[0]))
             
     if file_num >= 1:
-        select_file = input(get_display("\nהכנס מספר רצוי בכדי למחוק קובץ\nניתן להכניס כמה ספרות בהפרדה של פסיק ביניהם") + "\n>>>")
-        select_file = select_file.split(',')
+        select_file = input(get_display("\nהכנס מספר רצוי בכדי למחוק קובץ\nניתן להכניס כמה ספרות בהפרדה של רווח ביניהם") + "\n>>>")
+        select_file = select_file.split()
         try:
             for del_item in select_file:
                 os.remove(dir_path + "\\" + dict_to_del[int(del_item)])
@@ -64,8 +71,6 @@ def main():
     if (dir_path != "") and (os.path.exists(dir_path)):
         print("\n>>" + get_display(sys.argv[1]))
         duplic_files(dir_path)
-        os.system('timeout 1')
-        os.system('cls')
 
 if __name__ == '__main__':
     main()
