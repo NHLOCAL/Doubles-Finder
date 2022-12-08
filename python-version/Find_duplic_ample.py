@@ -36,7 +36,6 @@ def duplic_files(dir_path):
         len_item += 1
         show_len = len_item * 100 // len_dir
         print(str(show_len) + "% " + get_display("הושלמו"))
-
         # בדיקה אם שם הקובץ הפנימי מכיל סיומות ספציפיות
         if not (file.endswith(".mp3") or file.endswith(".wav") or file.endswith(".wma")):
             continue
