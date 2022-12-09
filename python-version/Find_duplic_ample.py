@@ -18,7 +18,7 @@ def duplic_scan(myfile):
             if 5530 == break_num:
                 break
             
-    return(id_file)
+    return id_file
 
 
 def duplic_files(dir_path):
