@@ -9,7 +9,7 @@ def duplic_scan(myfile):
     with open(myfile, 'rb') as input_file:
         for line in input_file:
             break_num += 1
-            if ((break_num < 545) and (break_num < 885)) or ((break_num > 1478) and (break_num < 1800)):
+            if ((break_num > 145) and (break_num < 1985)) or ((break_num > 2778) and (break_num < 4900)):
                 continue
             line_to_str = str(line)
             id_file += line_to_str[7:83:19]
@@ -48,7 +48,7 @@ def main():
             # הוספת התוצאות לרשימה
             files_list.append((os.path.join(root, file), id_file))
     
-    # יצירת רשימת ה-ID ל הקבצים    
+    # יצירת רשימת ה-ID של הקבצים    
     for file_item, id_item in files_list: id_list.append(id_item)
     
     # בדיקה אם ה-ID קיים יותר מפעם אחת
@@ -56,7 +56,8 @@ def main():
         if id_list.count(id_item) >= 2:
             file_num += 1
             dict_to_del.update({file_num: file_item})
-            print(str(file_num) + ": " + file_item)
+            print_file_item = file_item.replace(dir_path + "\\", "")
+            print(str(file_num) + ": " + print_file_item)
             
     if file_num >= 1:
         select_file = input("\nהכנס מספר רצוי בכדי למחוק קובץ\nניתן להכניס כמה ספרות בהפרדה של רווח ביניהם" + "\n>>>")
