@@ -9,7 +9,7 @@ def duplic_scan(myfile):
     with open(myfile, 'rb') as input_file:
         for line in input_file:
             break_num += 1
-            if ((break_num > 145) and (break_num < 1985)) or ((break_num > 2778) and (break_num < 4900)):
+            if ((break_num < 545) and (break_num < 885)) or ((break_num > 1478) and (break_num < 1800)):
                 continue
             line_to_str = str(line)
             id_file += line_to_str[7:83:19]
@@ -18,14 +18,19 @@ def duplic_scan(myfile):
             
     return id_file
 
-
-def duplic_files(dir_path):
+            
+def main():
 # פונקציה זו עוברת על קבוצת קבצים שבתיקיה ומפעילה עליהם את הפונקציה duplic_scan
+    dir_path = str(sys.argv[1])
+    if (dir_path != "") and (os.path.exists(dir_path)):
+        print("\n>>" + sys.argv[1])
+
     len_item = 0
     len_dirs = sum(len(files) for _, _, files in os.walk(dir_path))
     files_list = []
-    files_dict = {}
+    id_list = []
     dict_to_del = {}
+    file_num = 0
     
     # מעבר על רשימת הקבצים והוספת דגימה של הקידוד שלהם למשתנה
     for root, dirs, files in os.walk(dir_path):
@@ -37,36 +42,33 @@ def duplic_files(dir_path):
             # בדיקה אם שם הקובץ הפנימי מכיל סיומות ספציפיות
             if not file.endswith((".mp3",".wma", ".wav")):
                 continue
-            my_file = duplic_scan(os.path.join(root,file))
-            files_dict[file] = my_file
-            files_list.append(my_file)
-        
-    dict_list = files_dict.items()
-    file_num = 0
+            # הפעלת פונקציה למיון קבצים דומים
+            id_file = duplic_scan(os.path.join(root, file))
+            
+            # הוספת התוצאות לרשימה
+            files_list.append((os.path.join(root, file), id_file))
     
-    for item in dict_list:
-        if files_list.count(item[1]) == 2:
+    # יצירת רשימת ה-ID ל הקבצים    
+    for file_item, id_item in files_list: id_list.append(id_item)
+    
+    # בדיקה אם ה-ID קיים יותר מפעם אחת
+    for file_item, id_item in files_list:
+        if id_list.count(id_item) >= 2:
             file_num += 1
-            dict_to_del[file_num] = item[0]
-            print(str(file_num) + ": " + item[0])
+            dict_to_del.update({file_num: file_item})
+            print(str(file_num) + ": " + file_item)
             
     if file_num >= 1:
         select_file = input("\nהכנס מספר רצוי בכדי למחוק קובץ\nניתן להכניס כמה ספרות בהפרדה של רווח ביניהם" + "\n>>>")
         select_file = select_file.split()
         try:
             for del_item in select_file:
-                os.remove(dir_path + "\\" + dict_to_del[int(del_item)])
+                os.remove(dict_to_del[int(del_item)])
                 print(dict_to_del[int(del_item)] + "  -- נמחק!")
-        except:
+        except Exception as e:
             print("עליך להכניס מספר בכדי למחוק קובץ מסוים!")
     else:
         print("לא נמצא דבר!")
-            
-def main():
-    dir_path = str(sys.argv[1])
-    if (dir_path != "") and (os.path.exists(dir_path)):
-        print("\n>>" + sys.argv[1])
-        duplic_files(dir_path)
 
 if __name__ == '__main__':
     main()
