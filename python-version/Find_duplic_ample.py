@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os, sys
 
 def duplic_scan(myfile):
@@ -17,7 +16,7 @@ def duplic_scan(myfile):
             
     return id_file
 
-            
+
 def main():
 # פונקציה זו עוברת על קבוצת קבצים שבתיקיה ומפעילה עליהם את הפונקציה duplic_scan
     dir_path = str(sys.argv[1])
