@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-import os
-import sys
+import os, sys
 
 def duplic_scan(myfile):
 # פונקציה זו עוברת על הקוד הבינארי של הקובץ ושומרת מדגם שלו למשתנה
