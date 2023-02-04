@@ -1,5 +1,8 @@
 import os, sys
 
+# יבוא פונקציה לזיהוי דמיון בין מחרוזות
+from identify_similarities_copy import similarity_sure
+
 
 # הפונקצייה מסירה מספרים ממחרוזות ומאפשרת זיהוי קבצים כפולים לפי שם הקובץ
 def ignoring_numbers(string):
@@ -42,7 +45,7 @@ def main():
     # יצירת רשימת השמות הבסיסיים של הקבצים
     for file_item, name_item in files_list: names_list.append(name_item)
     
-    # בדיקה אם ה-ID קיים יותר מפעם אחת
+    # בדיקה אם שם מסויים קיים יותר מפעם אחת
     for file_item, name_item in files_list:
         if names_list.count(name_item) >= 2:
             file_num += 1
