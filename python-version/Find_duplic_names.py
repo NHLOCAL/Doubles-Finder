@@ -1,7 +1,7 @@
 import os, sys
 
 # יבוא פונקציה לזיהוי דמיון בין מחרוזות
-from identify_similarities_copy import similarity_sure
+from identify_similarities import similarity_sure
 
 
 # הפונקצייה מסירה מספרים ממחרוזות ומאפשרת זיהוי קבצים כפולים לפי שם הקובץ
