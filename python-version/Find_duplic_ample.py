@@ -2,7 +2,6 @@ import os
 import sys
 
 # Constants
-START_OFFSETS = [(145, 1985), (2778, 3800)]
 SUPPORTED_EXTENSIONS = (".mp3", ".wma", ".wav")
 
 def read_binary_slice(file_path):
